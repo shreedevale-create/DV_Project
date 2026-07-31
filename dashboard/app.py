@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -5,9 +7,10 @@ import streamlit as st
 # ----------------------------------------------------------------------------
 # Page setup
 # ----------------------------------------------------------------------------
-st.set_page_config(page_title="Chess at Scale: 6.2M Lichess Games", layout="wide")
+st.set_page_config(page_title="Chess at Scale: 6.2M Lichess Games", page_icon="♟️", layout="wide", initial_sidebar_state="expanded")
 
-DATA = "data"
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
 
 # ----------------------------------------------------------------------------
 # Palette (validated categorical + sequential ramp — see project's dataviz notes)
@@ -40,6 +43,8 @@ def style(fig, *, y_pct=False, x_title=None, y_title=None, legend_title=None):
         margin=dict(t=48, l=10, r=10, b=10),
         hoverlabel=dict(bgcolor="white", font_size=12),
     )
+    # Improve title alignment for accessibility / screen readers
+    fig.update_layout(title_x=0.02)
     fig.update_xaxes(showgrid=False, linecolor=AXIS, title=x_title, color=INK_SECONDARY)
     fig.update_yaxes(showgrid=True, gridcolor=GRID, linecolor=AXIS, title=y_title, color=INK_SECONDARY,
                       tickformat=".0%" if y_pct else None)
@@ -48,7 +53,7 @@ def style(fig, *, y_pct=False, x_title=None, y_title=None, legend_title=None):
 
 @st.cache_data
 def load(name):
-    return pd.read_csv(f"{DATA}/{name}.csv")
+    return pd.read_csv(DATA_DIR / f"{name}.csv")
 
 
 kpis = load("kpis").iloc[0]
@@ -74,6 +79,10 @@ st.caption(
     "6.24M finished games played on Lichess.org in July 2016 — ratings, openings, "
     "time controls, and outcomes. [Source: Kaggle — arevel/chess-games]"
 )
+
+# Short help text in the sidebar for reviewers
+st.sidebar.markdown(
+    "**About this dashboard**\n\nInteractive Streamlit dashboard built from pre-aggregated data. Use the filters to the left to explore rating bands and time controls. Data shown are aggregates — the full raw file is not included in this submission.")
 
 k1, k2, k3, k4, k5 = st.columns([1, 1, 1, 1, 1.4])
 k1.metric("Games analyzed", f"{int(kpis['TotalGames']):,}")

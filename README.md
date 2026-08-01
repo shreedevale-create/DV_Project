@@ -7,7 +7,7 @@ in July 2016.
 ## Contents
 - `ipynb_files/DV_Project_.ipynb` — data loading/cleaning + 12 questions, each with a Plotly chart and a data-grounded insight
 - `html&ppt/DV_Project_.html` — HTML export of the notebook
-- `html&ppt/Chess_at_Scale_presentation.pdf` — presentation (PDF export; `.pptx` source alongside)
+- `html&ppt/Chess_at_Scale_presentation.pdf` — presentation (PDF)
 - `dashboard/app.py` — Streamlit dashboard (4 tabs, KPI tiles, interactive rating-band/time-control filters), built on `dashboard/data/*.csv` — small pre-aggregated tables derived from the full dataset
 
 ## Dataset

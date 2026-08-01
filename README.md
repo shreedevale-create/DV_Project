@@ -5,9 +5,10 @@ an interactive Streamlit dashboard, built on 6.24M finished games played on Lich
 in July 2016.
 
 ## Contents
-- `DV_Project_.ipynb` — data loading/cleaning + 12 questions, each with a Plotly chart and a data-grounded insight
+- `ipynb_files/DV_Project_.ipynb` — data loading/cleaning + 12 questions, each with a Plotly chart and a data-grounded insight
+- `html&ppt/DV_Project_.html` — HTML export of the notebook
+- `html&ppt/Chess_at_Scale_presentation.pdf` — presentation (PDF export; `.pptx` source alongside)
 - `dashboard/app.py` — Streamlit dashboard (4 tabs, KPI tiles, interactive rating-band/time-control filters), built on `dashboard/data/*.csv` — small pre-aggregated tables derived from the full dataset
-- `project_plan.md` — project plan, dataset notes, and timeline
 
 ## Dataset
 [Chess Games (Kaggle) by arevel](https://www.kaggle.com/datasets/arevel/chess-games) —
@@ -16,7 +17,7 @@ it from Kaggle and place it as `chess_games.csv` in the repo root to re-run the 
 from scratch.
 
 ## Live dashboard
-(link coming soon)
+https://dvproject-jtrdtcaqjn3hdd9m5j6d4d.streamlit.app/
 
 ## Running the dashboard locally
 ```
